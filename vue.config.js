@@ -50,7 +50,7 @@ module.exports = {
       .set("@assets", path.resolve(__dirname, "./src/assets"))
       .set("@components", path.resolve(__dirname, "./src/components"))
       .set("@views", path.resolve(__dirname, "./src/views"))
-      .set("@service", path.resolve(__dirname, "./src/service"))
+      .set("@services", path.resolve(__dirname, "./src/services"))
       .set("@common", path.resolve(__dirname, "./src/common"));
     // 压缩图片（需安装image-webpack-loader）
     config.module
@@ -83,12 +83,12 @@ module.exports = {
     // port: "12345",
     // 配置反向代理 
     // proxy: {
-    //   "/": {
-    //     target: "/",
+    //   "/api": {
+    //     target: "/api",
     //     changeOrigin: true,
     //     ws: true,
     //     pathRewrite: {
-    //       "^/": ""
+    //       "^/api": ""
     //     }
     //   }
     // }

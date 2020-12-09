@@ -1,0 +1,255 @@
+@import './vars';
+
+// 设置宽高
+// 参数一:必选，宽度
+// 参数二:可选，高度
+@mixin wh($value1, $value2: null) {
+  @if $value2==null {
+    width: $value1;
+    height: $value1;
+  } @else {
+    width: $value1;
+    height: $value2;
+  }
+}
+
+// 设置高度与行高一致
+// 参数一:必选，高度
+// 参数二:必选，行高
+@mixin l-height($value) {
+  height: $value;
+  line-height: $value;
+}
+
+// 设置内边距
+// 参数一：必选，内边距相同
+// 参数二：可选，上下内边距相同，左右内边距相同
+// 参数三：可选，上-左右-下
+// 参数四：可选，上-右-下-左
+@mixin pd($value1, $value2: null, $value3: null, $value4: null) {
+  @if $value2==null {
+    padding: $value1;
+  } @else if $value3==null {
+    padding: $value1 $value2;
+  } @else if $value4==null {
+    padding: $value1 $value2 $value3;
+  } @else {
+    padding: $value1 $value2 $value3 $value4;
+  }
+}
+
+// 单独设置上下内边距
+// 参数一：必选，上下内边距相同
+// 参数二：可选，上下内边距不同
+@mixin py($value1, $value2: null) {
+  @if $value2==null {
+    padding: {
+      top: $value1;
+      bottom: $value1;
+    }
+  } @else {
+    padding: {
+      top: $value1;
+      bottom: $value2;
+    }
+  }
+}
+
+// 单独设置左右内边距
+// 参数一：必选，左右内边距相同
+// 参数二：可选，左右内边距不同
+@mixin px($value1, $value2: null) {
+  @if $value2==null {
+    padding: {
+      left: $value1;
+      right: $value1;
+    }
+  } @else {
+    padding: {
+      left: $value1;
+      right: $value2;
+    }
+  }
+}
+
+// 设置外边距
+// 参数一：必选，外边距相同
+// 参数二：可选，上下外边距相同，左右外边距相同
+// 参数三：可选，上-左右-下
+// 参数四：可选，上-右-下-左
+@mixin mg($value1, $value2: null, $value3: null, $value4: null) {
+  @if $value2==null {
+    margin: $value1;
+  } @else if $value3==null {
+    margin: $value1 $value2;
+  } @else if $value4==null {
+    margin: $value1 $value2 $value3;
+  } @else {
+    margin: $value1 $value2 $value3 $value4;
+  }
+}
+
+// 单独设置左右外边距
+// 参数一：必选，左右外边距相同
+// 参数二：可选，左右外边距不同
+@mixin mx($value1, $value2: null) {
+  @if $value2==null {
+    margin: {
+      left: $value1;
+      right: $value1;
+    }
+  } @else {
+    margin: {
+      left: $value1;
+      right: $value2;
+    }
+  }
+}
+
+// 单独设置上下外边距
+// 参数一：必选，上下外边距相同
+// 参数二：可选，上下外边距不同
+@mixin my($value1, $value2: null) {
+  @if $value2==null {
+    margin: {
+      top: $value1;
+      bottom: $value1;
+    }
+  } @else {
+    margin: {
+      top: $value1;
+      bottom: $value2;
+    }
+  }
+}
+
+// 设置圆角
+// 参数一：必选，圆角像素
+@mixin br($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+  border-radius: $radius;
+}
+
+// 设置字体大小/颜色
+// 参数一：必选，字体大小
+// 参数二：可选，颜色值
+@mixin f-sc($size, $color: null) {
+  @if $size {
+    font-size: $size;
+  }
+  @if $color {
+    color: $color;
+  }
+}
+
+//定位上下左右居中
+@mixin p-center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+//定位垂直居中
+@mixin p-y-center {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+//定位水平居中
+@mixin p-x-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+// 统一设置精灵图
+// 参数一：必选，精灵图水平位置
+// 参数二：必选，精灵图垂直位置
+// 参数三：可选，宽度
+// 参数四：可选，高度
+@mixin sprite($x, $y, $w: null, $h: null) {
+  @if $w!=null and $h!=null {
+    @include wh($w, $h);
+  }
+  background: url('~@assets/images/icon/box_icon.png') no-repeat $x $y;
+}
+
+// 设置背景图
+// 参数一：必选，背景图路径
+// 参数二：可选，水平位置
+// 参数三：可选，垂直位置
+// 参数四：可选，大小
+@mixin bg-img($url, $x: 0, $y: 0, $size: null) {
+  background: url('#{$url}') no-repeat $x $y;
+  @if $size {
+    background-size: $size;
+  }
+}
+
+// 自定义动画
+// 参数一：必选，动画名
+// @content：传入动画轨迹
+@mixin keyframe($name) {
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+//单行/多行文字溢出省略
+// 参数一：必选，文本行数
+@mixin ellipsis($line: 1) {
+  @if $line == 1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $line;
+  }
+}
+
+// 常用定位
+// 参数一：必选，定位类型(relative,absolute,fixed)
+// 参数二：可选，top值
+// 参数三：可选，bottom值
+// 参数四：可选，left值
+// 参数五：可选，right值
+@mixin position($type, $t: null, $r: null, $b: null, $l: null) {
+  @if $type==relative or $type==absolute or $type==fixed {
+    position: $type;
+    @if $t {
+      top: $t;
+    }
+    @if $r {
+      right: $r;
+    }
+    @if $b {
+      bottom: $b;
+    }
+    @if $l {
+      left: $l;
+    }
+  }
+}
+
+// 伪类样式
+@mixin before-after($w: null, $h: null, $content: '') {
+  content: $content;
+  display: inline-block;
+  @if $w and $h==null {
+    @include wh($w);
+  } @else {
+    @include wh($w, $h);
+  }
+}

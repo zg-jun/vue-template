@@ -5,11 +5,9 @@
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+@import '@assets/styles/base.scss'; //基础样式
+@import '@assets/styles/common.scss'; //公共样式
+#nprogress .bar {
+  background: #41b880 !important; //自定义进度条颜色
 }
 </style>

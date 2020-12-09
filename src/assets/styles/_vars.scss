@@ -1,0 +1,25 @@
+// 全局配色
+$colors: (
+  'primary': #00baba,
+  //主题色,
+);
+
+// justify-content属性值
+$flex-jc: (
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  between: space-between,
+  around: space-around,
+);
+
+//align-items属性值
+$flex-ai: (
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  stretch: stretch,
+);
+
+// 文本对齐方式属性值
+$align: (left, center, right);

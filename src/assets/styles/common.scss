@@ -1,0 +1,59 @@
+@import './vars';
+@import './mixins';
+@import './base.scss';
+
+// 字体/背景色
+@each $key, $val in $colors {
+  .text-#{$key} {
+    color: $val;
+  }
+  .bg-#{$key} {
+    background: $val;
+  }
+}
+
+// flex布局样式
+.d-flex {
+  display: flex;
+}
+
+.d-flex-c {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.f-column {
+  flex-direction: column;
+}
+
+.f-wrap {
+  flex-wrap: wrap;
+}
+
+@each $key, $val in $flex-jc {
+  .jc-#{$key} {
+    justify-content: $val;
+  }
+}
+
+@each $key, $val in $flex-ai {
+  .ai-#{$key} {
+    align-items: $val;
+  }
+}
+
+.f-1 {
+  flex: 1;
+}
+
+.f-grow-1 {
+  flex-grow: 1;
+}
+
+// 文本对齐
+@each $val in $align {
+  .t-#{$val} {
+    text-align: $val;
+  }
+}

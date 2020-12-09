@@ -3,5 +3,5 @@
  */
 
  export default {
-   vueDemo: state => state.vueDemo
+   
  }

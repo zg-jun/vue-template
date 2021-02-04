@@ -12,12 +12,13 @@
   <div class="home">
     <img src="../assets/images/logo.png" />
     <h1>Vue Compiled Successfully</h1>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Home',
-  components: {},
+  name: "Home",
+  components: {}
 };
 </script>

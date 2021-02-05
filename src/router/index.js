@@ -9,13 +9,11 @@ Vue.use(VueRouter);
 // 递归检测是否包含同级目录
 const findRoute = (routeItem, routeName) => {
   for (let item of routeItem) {
-    // debugger;
     if (item.path.replace(/\//g, "") === routeName) {
       return item;
     } else {
-      if (item.children && item.children.length) {
+      if (item.children && item.children.length)
         return findRoute(item.children, routeName);
-      }
     }
   }
 };
@@ -26,40 +24,32 @@ const requireContext = require.context("@views/", true, /\.vue$/);
 requireContext.keys().forEach(fileName => {
   //获取路由配置
   const routerModule = requireContext(fileName);
-  // 命名
+  // 路由命名
   let filePath = fileName.replace(/(\.\/|\.vue)/g, "");
-  // 是否有层级
-  if (filePath.indexOf("/") === -1) {
-    // 处理无层级
-    let result = findRoute(routes, filePath);
-    !result &&
-      routes.push({
-        path: `/${filePath}`,
-        name: routerModule.default.name || filePath,
-        component: routerModule.default,
-        children: []
-      });
-  } else {
-    // 处理有层级
-    let routeArr = filePath.split("/");
-    // 记录父级
-    let parentName = null;
-    routeArr.forEach(item => {
-      let result = findRoute(routes, item);
-      if (result) {
-        parentName = result;
-      } else {
-        parentName.children.push({
+  // 根据/拆分路由层级
+  let routeArr = filePath.split("/");
+  // 记录父级路由
+  let parentName = null;
+  // 按照层级查找
+  routeArr.forEach(item => {
+    let result = findRoute(routes, item);
+    result
+      ? (parentName = result)
+      : parentName
+      ? parentName.children.push({
           path: item,
           name: routerModule.default.name || item,
           component: routerModule.default,
           children: []
+        })
+      : routes.push({
+          path: `/${item}`,
+          name: routerModule.default.name || item,
+          component: routerModule.default,
+          children: []
         });
-      }
-    });
-  }
+  });
 });
-// console.log(routes);
 
 const router = new VueRouter({
   mode: "history",

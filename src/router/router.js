@@ -2,7 +2,7 @@
  * 路由地址
  */
 const Home = () => import("@views/Home.vue");
-const NotFound = () => import("@views/NotFound.vue");
+const NotFound = () => import("@views/Notfound.vue");
 
 const routes = [
   {

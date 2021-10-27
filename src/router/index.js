@@ -43,7 +43,7 @@ requireContext.keys().forEach(fileName => {
           children: []
         })
       : routes.push({
-          path: `/${item}`,
+          path: `/${item==='Home'?'':item}`,
           name: routerModule.default.name || item,
           component: routerModule.default,
           children: []

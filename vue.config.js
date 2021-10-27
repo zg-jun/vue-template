@@ -37,7 +37,7 @@ module.exports = {
   // chainWebpack链式调用
   chainWebpack: config => {
     config.plugin("html").tap(args => {
-      args[0].title = "VUE_CLI"; // 网站标题
+      args[0].title = "vue_template"; // 网站标题
       return args;
     });
     // 查看打包文件体积大小 npm run analyzer
